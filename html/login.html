@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美食商城 - 登录注册</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <div class="header">
+        <button class="back-btn" id="backBtn">←</button>
+        <h1 id="pageTitle">登录美食商城</h1>
+    </div>
+
+    <!-- 内容区域 -->
+    <div class="content">
+        <div class="auth-container" id="authContainer">
+            <div class="auth-title">
+                <h2>欢迎回来</h2>
+                <p>登录账号，享受更多会员权益</p>
+            </div>
+
+            <!-- 登录/注册标签 -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="loginTab">登录</button>
+                <button class="auth-tab" id="registerTab">注册</button>
+            </div>
+
+            <!-- 登录表单 -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">手机号/邮箱</label>
+                    <input type="text" class="form-input" id="loginAccount" placeholder="请输入手机号或邮箱" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">密码</label>
+                    <div class="password-input">
+                        <input type="password" class="form-input" id="loginPassword" placeholder="请输入密码" required>
+                        <button type="button" class="toggle-password" id="toggleLoginPassword">👁️</button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe"> 记住我
+                    </label>
+                    <a href="#" class="forgot-password" id="forgotPassword">忘记密码？</a>
+                </div>
+
+                <button type="submit" class="auth-btn" id="loginBtn">登录</button>
+
+                <div class="divider">或使用以下方式登录</div>
+
+                <div class="social-auth">
+                    <button type="button" class="social-btn wechat-btn" id="wechatLogin">
+                        <span>💬</span>
+                    </button>
+                    <button type="button" class="social-btn qq-btn" id="qqLogin">
+                        <span>🐧</span>
+                    </button>
+                </div>
+
+                <div class="auth-footer">
+                    还没有账号？
+                    <a href="#" class="auth-link" id="toRegisterLink">立即注册</a>
+                </div>
+            </form>
+
+            <!-- 注册表单 -->
+            <form id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">手机号</label>
+                    <input type="tel" class="form-input" id="registerPhone" placeholder="请输入手机号" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">验证码</label>
+                    <div class="verification-code">
+                        <input type="text" class="form-input" id="registerCode" placeholder="请输入验证码" required>
+                        <button type="button" class="send-code-btn" id="sendCodeBtn">获取验证码</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">密码</label>
+                    <div class="password-input">
+                        <input type="password" class="form-input" id="registerPassword" placeholder="请输入密码（6-20位字符）"
+                            required>
+                        <button type="button" class="toggle-password" id="toggleRegisterPassword">👁️</button>
+                    </div>
+                </div>
+
+                <div class="form-group register-fields">
+                    <label class="form-label">确认密码</label>
+                    <div class="password-input">
+                        <input type="password" class="form-input" id="confirmPassword" placeholder="请再次输入密码" required>
+                        <button type="button" class="toggle-password" id="toggleConfirmPassword">👁️</button>
+                    </div>
+                </div>
+
+                <div class="agreement">
+                    <input type="checkbox" id="userAgreement" required>
+                    <label for="userAgreement">我已阅读并同意 <a href="#">《用户协议》</a> 和 <a href="#">《隐私政策》</a></label>
+                </div>
+
+                <button type="submit" class="auth-btn" id="registerBtn">注册</button>
+
+                <div class="auth-footer">
+                    已有账号？
+                    <a href="#" class="auth-link" id="toLoginLink">立即登录</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- 登录成功提示 -->
+        <div class="success-message" id="successMessage">
+            <div class="success-icon">✓</div>
+            <h3>登录成功！</h3>
+            <p>欢迎回到美食商城，即将为您跳转...</p>
+            <button class="continue-btn" id="continueBtn">继续购物</button>
+        </div>
+
+        <!-- 忘记密码表单 -->
+        <div class="auth-container" id="forgotPasswordForm" style="display: none;">
+            <div class="auth-title">
+                <h2>找回密码</h2>
+                <p>请输入您的手机号或邮箱重置密码</p>
+            </div>
+
+            <form id="resetPasswordForm">
+                <div class="form-group">
+                    <label class="form-label">手机号/邮箱</label>
+                    <input type="text" class="form-input" id="resetAccount" placeholder="请输入手机号或邮箱" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">验证码</label>
+                    <div class="verification-code">
+                        <input type="text" class="form-input" id="resetCode" placeholder="请输入验证码" required>
+                        <button type="button" class="send-code-btn" id="sendResetCodeBtn">获取验证码</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">新密码</label>
+                    <div class="password-input">
+                        <input type="password" class="form-input" id="newPassword" placeholder="请输入新密码（6-20位字符）"
+                            required>
+                        <button type="button" class="toggle-password" id="toggleNewPassword">👁️</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="auth-btn" id="resetPasswordBtn">重置密码</button>
+
+                <div class="auth-footer">
+                    <a href="#" class="auth-link" id="backToLoginLink">返回登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 微信授权弹窗 -->
+    <div class="auth-modal" id="wechatAuthModal">
+        <div class="auth-modal-content">
+            <div class="auth-modal-header">
+                <h3>微信授权登录</h3>
+            </div>
+            <div class="auth-modal-body">
+                <p>商城申请获取以下权限：</p>
+                <p>获得你的公开信息（昵称、头像等）</p>
+                <div class="auth-modal-buttons">
+                    <button class="auth-modal-btn auth-modal-cancel" id="wechatAuthCancel">取消</button>
+                    <button class="auth-modal-btn auth-modal-confirm" id="wechatAuthConfirm">允许</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QQ授权弹窗 -->
+    <div class="auth-modal" id="qqAuthModal">
+        <div class="auth-modal-content">
+            <div class="auth-modal-header">
+                <h3>QQ授权登录</h3>
+            </div>
+            <div class="auth-modal-body">
+                <p>商城申请获取以下权限：</p>
+                <p>获得你的公开信息（昵称、头像等）</p>
+                <div class="auth-modal-buttons">
+                    <button class="auth-modal-btn auth-modal-cancel" id="qqAuthCancel">取消</button>
+                    <button class="auth-modal-btn auth-modal-confirm" id="qqAuthConfirm">允许</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../javascript/login.js">
+    </script>
+</body>
+
+</html>

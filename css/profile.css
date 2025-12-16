@@ -1,0 +1,378 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+body {
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 750px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 60px;
+}
+
+/* 用户信息区域 */
+.user-profile {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin-right: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.username {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.user-desc {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.edit-profile {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-profile:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 菜单项 */
+.menu-section {
+    margin: 20px 0;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 20px 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.menu-items {
+    list-style: none;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f5f5f5;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-item:hover {
+    background-color: #f9f9f9;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.menu-text {
+    flex: 1;
+    font-size: 16px;
+}
+
+.menu-arrow {
+    color: #ccc;
+    font-size: 14px;
+}
+
+/* 订单状态 */
+.order-stats {
+    display: flex;
+    background-color: white;
+    padding: 15px 0;
+    margin: 0 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.order-stat {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+.stat-count {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ff6b6b;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 底部导航 */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 750px;
+    margin: 0 auto;
+    display: flex;
+    background-color: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.nav-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-item.active {
+    color: #ff6b6b;
+}
+
+.nav-icon {
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+/* 响应式调整 */
+@media (max-width: 480px) {
+    .user-profile {
+        padding: 20px 15px;
+    }
+
+    .avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 25px;
+    }
+
+    .username {
+        font-size: 20px;
+    }
+}
+
+/* 编辑资料弹窗样式 */
+.profile-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-modal.active {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: relative;
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.modal-form {
+    margin-bottom: 24px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #ff6b6b;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* 头像上传样式 */
+.avatar-group {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.avatar-preview {
+    margin-top: 10px;
+}
+
+.avatar-display {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 12px;
+    border: 2px solid #ddd;
+    transition: all 0.3s;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.avatar-display:hover {
+    border-color: #ff6b6b;
+    transform: scale(1.05);
+}
+
+.btn-change-avatar {
+    background-color: #f5f5f5;
+    color: #666;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-change-avatar:hover {
+    background-color: #e0e0e0;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.btn-cancel,
+.btn-confirm {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-cancel {
+    background-color: #f5f5f5;
+    color: #666;
+}
+
+.btn-cancel:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-confirm {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.btn-confirm:hover {
+    background-color: #ff5252;
+}

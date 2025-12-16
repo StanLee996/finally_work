@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - 零食商城</title>
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 用户信息区域 -->
+        <div class="user-profile">
+            <div class="avatar">🐶</div>
+            <div class="user-info">
+                <div class="username">Samoyed</div>
+                <div class="user-desc">零食爱好者</div>
+            </div>
+            <button class="edit-profile">编辑资料</button>
+        </div>
+
+        <!-- 订单状态 -->
+        <div class="menu-section">
+            <h2 class="section-title">我的订单</h2>
+            <div class="order-stats">
+                <div class="order-stat">
+                    <div class="stat-count">2</div>
+                    <div class="stat-label">待付款</div>
+                </div>
+                <div class="order-stat">
+                    <div class="stat-count">1</div>
+                    <div class="stat-label">待发货</div>
+                </div>
+                <div class="order-stat">
+                    <div class="stat-count">3</div>
+                    <div class="stat-label">待收货</div>
+                </div>
+                <div class="order-stat">
+                    <div class="stat-count">12</div>
+                    <div class="stat-label">已完成</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 菜单项 -->
+        <div class="menu-section">
+            <h2 class="section-title">账户管理</h2>
+            <ul class="menu-items">
+                <a href="#" class="menu-item" id="addressItem">
+                    <div class="menu-icon">📍</div>
+                    <div class="menu-text">我的收货地址</div>
+                    <div class="menu-arrow">›</div>
+                </a>
+                <a href="#" class="menu-item">
+                    <div class="menu-icon">❤️</div>
+                    <div class="menu-text">我的收藏</div>
+                    <div class="menu-arrow">›</div>
+                </a>
+                <a href="#" class="menu-item">
+                    <div class="menu-icon">👥</div>
+                    <div class="menu-text">邀请好友</div>
+                    <div class="menu-arrow">›</div>
+                </a>
+            </ul>
+        </div>
+
+        <div class="menu-section">
+            <h2 class="section-title">其他服务</h2>
+            <ul class="menu-items">
+                <a href="#" class="menu-item">
+                    <div class="menu-icon">ℹ️</div>
+                    <div class="menu-text">帮助中心</div>
+                    <div class="menu-arrow">›</div>
+                </a>
+                <a href="#" class="menu-item">
+                    <div class="menu-icon">📞</div>
+                    <div class="menu-text">联系客服</div>
+                    <div class="menu-arrow">›</div>
+                </a>
+                <a href="#" class="menu-item">
+                    <div class="menu-icon">⚙️</div>
+                    <div class="menu-text">设置</div>
+                    <div class="menu-arrow">›</div>
+                </a>
+            </ul>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <div class="nav-icon">🏠</div>
+                <div>首页</div>
+            </a>
+            <a href="news.html" class="nav-item">
+                <div class="nav-icon">🆕</div>
+                <div>新品</div>
+            </a>
+            <a href="cart.html" class="nav-item">
+                <div class="nav-icon">🛒</div>
+                <div>购物车</div>
+            </a>
+            <a href="profile.html" class="nav-item active">
+                <div class="nav-icon">👤</div>
+                <div>个人中心</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- 编辑资料弹窗 -->
+    <div class="profile-modal" id="profileModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <h3 class="modal-title">编辑资料</h3>
+            <div class="modal-form">
+                <div class="form-group avatar-group">
+                    <label>头像</label>
+                    <div class="avatar-preview">
+                        <div class="avatar-display" id="avatarDisplay">🐶</div>
+                        <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                        <button type="button" class="btn-change-avatar" id="changeAvatarBtn">更换头像</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editUsername">用户名</label>
+                    <input type="text" id="editUsername" placeholder="请输入用户名">
+                </div>
+                <div class="form-group">
+                    <label for="editUserDesc">个人简介</label>
+                    <textarea id="editUserDesc" placeholder="请输入个人简介" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="cancelBtn">取消</button>
+                <button class="btn-confirm" id="confirmBtn">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../javascript/profile.js">
+
+    </script>
+</body>
+
+</html>

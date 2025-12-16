@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车 - 零食商城</title>
+    <link rel="stylesheet" href="../css/cart.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 页面头部 -->
+        <div class="page-header">
+            <h1 class="page-title">购物车</h1>
+        </div>
+
+        <!-- 空购物车状态 -->
+        <div class="empty-cart">
+            <div class="cart-icon">🛒</div>
+            <div class="empty-text">购物车空空如也</div>
+            <button class="browse-btn" id="browseBtn">去首页逛逛</button>
+        </div>
+
+        <!-- 购物车有商品时的内容（初始隐藏） -->
+        <div class="cart-items" id="cartItems">
+            <!-- 购物车商品会通过JS动态添加 -->
+        </div>
+
+        <!-- 购物车结算区域（初始隐藏） -->
+        <div class="cart-summary" id="cartSummary">
+            <div class="total-price">总计：¥<span id="totalPrice">0.00</span></div>
+            <button class="checkout-btn" id="checkoutBtn">立即结算</button>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <div class="nav-icon">🏠</div>
+                <div>首页</div>
+            </a>
+            <a href="news.html" class="nav-item">
+                <div class="nav-icon">🆕</div>
+                <div>新品</div>
+            </a>
+            <a href="cart.html" class="nav-item active">
+                <div class="nav-icon">🛒</div>
+                <div>购物车</div>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <div class="nav-icon">👤</div>
+                <div>个人中心</div>
+            </a>
+        </div>
+    </div>
+
+    <script src="../javascript/cart.js"></script>
+</body>
+
+</html>
