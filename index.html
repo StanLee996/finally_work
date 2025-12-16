@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=html/index.html">
+    <title>正在跳转...</title>
+    <!-- 可选：添加 favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div style="text-align: center; margin-top: 50px;">
+        <h2>正在跳转到主页...</h2>
+        <p>如果页面没有自动跳转，请 <a href="html/index.html">点击这里</a></p>
+        <p style="color: #666; margin-top: 20px;">
+            或者等待 <span id="countdown">3</span> 秒后自动跳转
+        </p>
+    </div>
+
+    <script>
+        // 可选：添加倒计时显示
+        let seconds = 3;
+        const countdownEl = document.getElementById('countdown');
+
+        const timer = setInterval(() => {
+            seconds--;
+            countdownEl.textContent = seconds;
+
+            if (seconds <= 0) {
+                clearInterval(timer);
+                // 如果重定向失败，强制跳转
+                window.location.href = "html/index.html";
+            }
+        }, 1000);
+
+        // 如果用户点击取消按钮，停止重定向
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' || e.ctrlKey && e.key === 'c') {
+                clearInterval(timer);
+                document.querySelector('h2').textContent = '跳转已取消';
+                countdownEl.textContent = '0';
+            }
+        });
+    </script>
+</body>
+
+</html>
