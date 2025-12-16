@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const browseBtn = document.getElementById('browseBtn');
     const checkoutBtn = document.getElementById('checkoutBtn');
     const totalPriceElement = document.getElementById('totalPrice');
-    
+
     // 选中的商品ID列表
     let selectedItems = [];
     // 全选状态
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function renderCartItems() {
         const cartData = JSON.parse(localStorage.getItem('snackCart') || '[]');
         cartItems.innerHTML = '';
-        
+
         // 添加全选按钮
         const selectAllElement = document.createElement('div');
         selectAllElement.className = 'select-all';
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <span>全选</span>
         `;
         cartItems.appendChild(selectAllElement);
-        
+
         // 为全选按钮添加事件监听
         document.getElementById('selectAllCheckbox').addEventListener('click', toggleSelectAll);
 
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 removeItem(parseInt(this.getAttribute('data-index')));
             });
         });
-        
+
         // 为商品复选框添加事件监听
         document.querySelectorAll('.cart-item .checkbox').forEach(checkbox => {
             checkbox.addEventListener('click', function () {
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
-    
+
     // 切换商品选中状态
     function toggleItemSelection(index) {
         const indexInSelected = selectedItems.indexOf(index);
@@ -125,12 +125,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         renderCartItems();
     }
-    
+
     // 切换全选状态
     function toggleSelectAll() {
         isAllSelected = !isAllSelected;
         const cartData = JSON.parse(localStorage.getItem('snackCart') || '[]');
-        
+
         if (isAllSelected) {
             // 全选：选中所有商品
             selectedItems = cartData.map((_, index) => index);
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // 取消全选：清空选中列表
             selectedItems = [];
         }
-        
+
         renderCartItems();
     }
 
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 selectedItems.splice(indexInSelected, 1);
             }
             // 更新选中列表中所有大于当前索引的项
-            selectedItems = selectedItems.map(itemIndex => 
+            selectedItems = selectedItems.map(itemIndex =>
                 itemIndex > index ? itemIndex - 1 : itemIndex
             );
         }
@@ -170,17 +170,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const cartData = JSON.parse(localStorage.getItem('snackCart') || '[]');
         cartData.splice(index, 1);
         localStorage.setItem('snackCart', JSON.stringify(cartData));
-        
+
         // 同时从选中列表中移除
         const indexInSelected = selectedItems.indexOf(index);
         if (indexInSelected > -1) {
             selectedItems.splice(indexInSelected, 1);
         }
         // 更新选中列表中所有大于当前索引的项
-        selectedItems = selectedItems.map(itemIndex => 
+        selectedItems = selectedItems.map(itemIndex =>
             itemIndex > index ? itemIndex - 1 : itemIndex
         );
-        
+
         checkCart();
     }
 
@@ -192,22 +192,38 @@ document.addEventListener('DOMContentLoaded', function () {
     // 立即结算
     checkoutBtn.addEventListener('click', function () {
         const cartData = JSON.parse(localStorage.getItem('snackCart') || '[]');
-        
+
         if (selectedItems.length === 0) {
             alert('请先选择要结算的商品');
             return;
         }
-        
+
         // 获取选中的商品
         const selectedProducts = selectedItems.map(index => cartData[index]);
-        
+
         // 计算选中商品的总价
         const totalAmount = selectedProducts.reduce((sum, item) => {
             return sum + (item.price * item.quantity);
         }, 0);
-        
-        alert(`您已选择 ${selectedItems.length} 件商品，总价：¥${totalAmount.toFixed(2)}\n结算功能即将开放，敬请期待！`);
-        // 在实际应用中，这里会跳转到结算页面
+
+        // 从购物车中删除选中的商品（从大到小删除，避免索引错误）
+        const sortedSelectedItems = [...selectedItems].sort((a, b) => b - a);
+        sortedSelectedItems.forEach(index => {
+            cartData.splice(index, 1);
+        });
+
+        // 更新本地存储
+        localStorage.setItem('snackCart', JSON.stringify(cartData));
+
+        // 清空选中列表
+        selectedItems = [];
+        isAllSelected = false;
+
+        // 更新页面显示
+        checkCart();
+
+        // 显示购买成功提示
+        alert(`购买成功！\n您已购买 ${selectedProducts.length} 件商品，总价：¥${totalAmount.toFixed(2)}`);
     });
 
     // 初始化检查购物车状态
