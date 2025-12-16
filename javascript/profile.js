@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
             avatarDisplay.textContent = avatarElement.textContent;
             avatarDisplay.style.backgroundImage = '';
         }
-        // 显示弹窗
+        // 显示弹窗；active属性
         profileModal.classList.add('active');
     });
 

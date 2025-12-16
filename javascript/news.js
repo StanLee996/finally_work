@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         minusBtn.addEventListener('click', function () {
             let value = parseInt(input.value);
+            //限制范围
             if (value > 1) {
                 input.value = value - 1;
             }
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     addToCartButtons.forEach(button => {
         button.addEventListener('click', function () {
+            //向下找元素
             const productCard = this.closest('.product-card');
             const productName = productCard.querySelector('.product-name').textContent;
             const quantity = parseInt(productCard.querySelector('.quantity-input').value);
@@ -41,10 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // 从本地存储获取购物车数据
             let cartData = JSON.parse(localStorage.getItem('snackCart') || '[]');
-            
+
             // 检查商品是否已在购物车中
             const existingItemIndex = cartData.findIndex(item => item.name.includes(productName));
-            
+
             if (existingItemIndex > -1) {
                 // 商品已存在，增加数量
                 cartData[existingItemIndex].quantity += quantity;
@@ -56,10 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     quantity: quantity
                 });
             }
-            
+
             // 保存到本地存储
             localStorage.setItem('snackCart', JSON.stringify(cartData));
-            
+
             console.log(`已将 ${productName} x${quantity} 添加到购物车`);
         });
     });

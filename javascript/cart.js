@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const emptyCart = document.querySelector('.empty-cart');
-    const cartItems = document.getElementById('cartItems');
-    const cartSummary = document.getElementById('cartSummary');
-    const browseBtn = document.getElementById('browseBtn');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const totalPriceElement = document.getElementById('totalPrice');
+    const emptyCart = document.querySelector('.empty-cart');        //空购物车div
+    const cartItems = document.getElementById('cartItems');         //有商品的div
+    const cartSummary = document.getElementById('cartSummary');     //底部结算div
+    const browseBtn = document.getElementById('browseBtn');         //空购物车跳转
+    const checkoutBtn = document.getElementById('checkoutBtn');     //结算按钮
+    const totalPriceElement = document.getElementById('totalPrice');    //结算金额
 
     // 选中的商品ID列表
     let selectedItems = [];
@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="checkbox ${isAllSelected ? 'checked' : ''}" id="selectAllCheckbox"></div>
             <span>全选</span>
         `;
+        //appendChild（）添加元素到末尾
         cartItems.appendChild(selectAllElement);
 
         // 为全选按钮添加事件监听
@@ -52,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         cartData.forEach((item, index) => {
             // 检查商品是否被选中
+            //遍历检查以拥有的selectedItems的商品索引值
             const isChecked = selectedItems.includes(index);
             // 只有选中的商品才计算总价
             if (isChecked) {
@@ -79,11 +81,14 @@ document.addEventListener('DOMContentLoaded', function () {
             cartItems.appendChild(cartItem);
         });
 
+        // 金额结算保留两位小数
         totalPriceElement.textContent = totalPrice.toFixed(2);
 
         // 添加事件监听器
         document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
             btn.addEventListener('click', function () {
+                //data-index：新html
+                //getAttribute返回属性值
                 updateQuantity(parseInt(this.getAttribute('data-index')), -1);
             });
         });
@@ -111,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 切换商品选中状态
     function toggleItemSelection(index) {
+        //indexOf 找索引值
         const indexInSelected = selectedItems.indexOf(index);
         if (indexInSelected > -1) {
             // 取消选中
@@ -133,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (isAllSelected) {
             // 全选：选中所有商品
+            //.map，遍历数组，拼接元素，返回新的数组；返回数组的索引值
             selectedItems = cartData.map((_, index) => index);
         } else {
             // 取消全选：清空选中列表
@@ -167,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 删除商品
     function removeItem(index) {
+        //本地数据中移出
         const cartData = JSON.parse(localStorage.getItem('snackCart') || '[]');
         cartData.splice(index, 1);
         localStorage.setItem('snackCart', JSON.stringify(cartData));
@@ -181,11 +189,13 @@ document.addEventListener('DOMContentLoaded', function () {
             itemIndex > index ? itemIndex - 1 : itemIndex
         );
 
+        //上面的函数，检查还有没有商品，没有就隐藏，显示
         checkCart();
     }
 
     // 去首页逛逛
     browseBtn.addEventListener('click', function () {
+        //页面跳转，从网址根目录跳转，同目录
         window.location.href = 'index.html';
     });
 
